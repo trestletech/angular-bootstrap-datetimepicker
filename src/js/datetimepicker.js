@@ -34,8 +34,7 @@
 
     var directiveDefinition = {
       bindToController: false,
-      controller: DirectiveController,
-      controllerAs: 'dateTimePickerController',
+      link: DirectiveLink,
       replace: true,
       require: 'ngModel',
       restrict: 'E',
@@ -46,11 +45,9 @@
       templateUrl: 'templates/datetimepicker.html'
     };
 
-    DirectiveController.$inject = ['$scope', '$element', '$attrs'];
-
-    function DirectiveController($scope, $element, $attrs) {
+    function DirectiveLink($scope, $element, $attrs, ngModel) {
       // Configuration
-      var ngModelController = $element.controller('ngModel');
+      var ngModelController = ngModel;
 
       var configuration = createConfiguration();
       $scope.screenReader = configuration.screenReader;
